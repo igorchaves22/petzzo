@@ -24,7 +24,8 @@
 
         "baseUrl": "./src",
         "paths": {
-            "~types": ["./types"]
+            "~types": ["./types"],
+            "~utils": ["./utils"]
         }
     },
     "include": ["src"]
