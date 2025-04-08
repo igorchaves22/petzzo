@@ -1,3 +1,27 @@
-import { ArrowRight, ChevronRight, CircleCheck, Mail, MapPin, Menu, Phone, Quote, Send, X } from "lucide-react";
+import {
+    ArrowRight,
+    ChevronRight,
+    ChevronUp,
+    CircleCheck,
+    Mail,
+    MapPin,
+    Menu,
+    Phone,
+    Quote,
+    Send,
+    X
+} from "lucide-react";
 
-export const lucideReactIcons = { ArrowRight, ChevronRight, CircleCheck, Mail, MapPin, Menu, Phone, Quote, Send, X };
+export const lucideReactIcons = {
+    ArrowRight,
+    ChevronRight,
+    ChevronUp,
+    CircleCheck,
+    Mail,
+    MapPin,
+    Menu,
+    Phone,
+    Quote,
+    Send,
+    X
+};

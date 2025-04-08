@@ -4,3 +4,4 @@ export { useCollapseControl } from "./useCollapseControl";
 export { useHeader } from "./useHeader";
 export { useFaqCard } from "./useFaqCard";
 export { useNewsletterForm } from "./useNewsletterForm";
+export { useScrollToTopButton } from "./useScrollToTopButton";
