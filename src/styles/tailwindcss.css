@@ -2,4 +2,34 @@
 
 @theme {
     --font-quicksand: "Quicksand", sans-serif;
+    --animate-scroll-left-partners: scrollLeft 10s linear infinite;
+    --animate-bounce-y-service: bounceY 2s infinite;
+    --animate-bounce-x-service: bounceX 3s infinite;
+
+    @keyframes scrollLeft {
+        0% {
+            transform: translateX(0%);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+    @keyframes bounceY {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(0.25rem);
+        }
+    }
+    @keyframes bounceX {
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+        50% {
+            transform: translateX(0.5rem);
+        }
+    }
 }

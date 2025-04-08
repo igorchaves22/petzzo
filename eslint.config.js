@@ -38,7 +38,8 @@ export default [
                     alphabetize: { order: "asc", ignoreCase: true }
                 }
             ],
-            "@typescript-eslint/no-empty-object-type": "off"
+            "@typescript-eslint/no-empty-object-type": "off",
+            "react/no-unescaped-entities": "off"
         }
     },
     eslintConfigPrettier,

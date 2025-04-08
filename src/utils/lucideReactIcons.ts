@@ -1,3 +1,3 @@
-import { Menu, X } from "lucide-react";
+import { ArrowRight, ChevronRight, CircleCheck, Mail, MapPin, Menu, Phone, Quote, Send, X } from "lucide-react";
 
-export const lucideReactIcons = { Menu, X };
+export const lucideReactIcons = { ArrowRight, ChevronRight, CircleCheck, Mail, MapPin, Menu, Phone, Quote, Send, X };

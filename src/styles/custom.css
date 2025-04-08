@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+.scrollbar-page {
+    &::-webkit-scrollbar {
+        @apply w-2 bg-gray-50;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        @apply rounded-full bg-amber-400;
+    }
+}
