@@ -1,10 +1,10 @@
-import { useContext } from "react";
 import aboutImg from "~assets/img/about.webp";
 import photoImg from "~assets/img/photo.webp";
 import resourcesImg from "~assets/img/resources.webp";
 import testimonialImg from "~assets/img/testimonial.webp";
-import { ScreenContext } from "~contexts";
+import { usePageContent } from "~hooks";
 import {
+    applyClassName,
     faqItems,
     navbarItems,
     partnersItems,
@@ -22,7 +22,7 @@ import { NewsletterForm } from "../NewsletterForm";
 import { SectionContainer } from "../SectionContainer";
 
 export const PageContent = () => {
-    const { screenStatus } = useContext(ScreenContext);
+    const { screenStatus, contentsRef } = usePageContent();
 
     return (
         <main className="w-full h-auto min-h-screen">
@@ -36,10 +36,14 @@ export const PageContent = () => {
                     description="We provide everything your furry friend needs: grooming, bathing, healthy food, and the best toys. Visit our pet shop and ensure your pet’s happiness and well-being!"
                     additionalInfo={
                         <>
-                            <CtaLink title="Read More" />
+                            <CtaLink
+                                title="Read More"
+                                animationDelay={800}
+                            />
                             <CtaLink
                                 title="View Offers"
                                 alternative
+                                animationDelay={875}
                             />
                         </>
                     }
@@ -55,9 +59,16 @@ export const PageContent = () => {
                     {renderElement(
                         !screenStatus.isLgScreen,
                         <img
+                            ref={contentsRef.about.img.aboutImgRef}
                             src={aboutImg}
                             alt="About"
-                            className="size-52 object-contain md:size-82"
+                            className={
+                                "size-52 opacity-0 object-contain md:size-82" +
+                                applyClassName(
+                                    contentsRef.about.img.aboutImgIsVisible,
+                                    "animate-slide-in-fwd-center-element"
+                                )
+                            }
                             loading="lazy"
                         />
                     )}
@@ -66,7 +77,17 @@ export const PageContent = () => {
                         title="Our Passion Is Providing Superior Pet Care"
                         additionalInfo={
                             <>
-                                <section className="w-full h-min flex flex-col gap-y-2">
+                                <section
+                                    ref={contentsRef.about.text.aboutTextRef}
+                                    style={{ animationDelay: "800ms" }}
+                                    className={
+                                        "w-full h-min opacity-0 flex flex-col gap-y-2" +
+                                        applyClassName(
+                                            contentsRef.about.text.aboutTextIsVisible,
+                                            "animate-appear-element"
+                                        )
+                                    }
+                                >
                                     <section className="w-full h-min flex gap-x-4 items-center">
                                         <p className="size-max pr-4 border-r-2 border-amber-400 text-amber-400 font-bold text-sm font-quicksand text-center">
                                             <span className="text-4xl">10y</span>
@@ -83,7 +104,10 @@ export const PageContent = () => {
                                         a passionate team always ready to help.
                                     </p>
                                 </section>
-                                <CtaLink title="See Our Story" />
+                                <CtaLink
+                                    title="See Our Story"
+                                    animationDelay={875}
+                                />
                             </>
                         }
                         alignLeft
@@ -94,7 +118,14 @@ export const PageContent = () => {
                 <InfoBanner
                     title="Partners"
                     additionalInfo={
-                        <section className="w-full h-min overflow-x-hidden relative flex group before:content-[''] before:w-[5%] before:h-auto before:absolute before:inset-0 before:z-[2] before:bg-gradient-to-r before:from-gray-50 before:to-transparent after:content-[''] after:w-[5%] after:h-auto after:absolute after:inset-0 after:right-0 after:left-auto after:z-[2] after:bg-gradient-to-l after:from-gray-50 after:to-transparent">
+                        <section
+                            ref={contentsRef.partners.partnersRef}
+                            style={{ animationDelay: "800ms" }}
+                            className={
+                                "w-full h-min overflow-x-hidden opacity-0 relative flex group before:content-[''] before:w-[5%] before:h-auto before:absolute before:inset-0 before:z-[2] before:bg-gradient-to-r before:from-gray-50 before:to-transparent after:content-[''] after:w-[5%] after:h-auto after:absolute after:inset-0 after:right-0 after:left-auto after:z-[2] after:bg-gradient-to-l after:from-gray-50 after:to-transparent" +
+                                applyClassName(contentsRef.partners.partnersIsVisible, "animate-appear-element")
+                            }
+                        >
                             {Array.from({ length: 4 }).map((_, i) => (
                                 <ul
                                     key={i}
@@ -130,13 +161,21 @@ export const PageContent = () => {
                         <CtaLink
                             title="See All Services"
                             alternative
+                            animationDelay={800}
                         />
                     }
                     alignLeftOnLargeScreen="lg"
                     alternative
                     layoutVariant="lg"
                 />
-                <ul className="w-full h-min flex flex-wrap gap-y-4 gap-x-14 justify-center md:w-9/12">
+                <ul
+                    ref={contentsRef.services.servicesRef}
+                    style={{ animationDelay: "875ms" }}
+                    className={
+                        "w-full h-min opacity-0 flex flex-wrap gap-y-4 gap-x-14 justify-center md:w-9/12" +
+                        applyClassName(contentsRef.services.servicesIsVisible, "animate-appear-element")
+                    }
+                >
                     {servicesItems.map((item) => (
                         <li
                             key={item}
@@ -152,7 +191,14 @@ export const PageContent = () => {
                 bgImg
             >
                 <InfoBanner title="Flexible Pricing Table" />
-                <ol className="w-full h-min flex flex-wrap gap-y-4 gap-x-10 justify-center">
+                <ol
+                    ref={contentsRef.pricing.pricingRef}
+                    style={{ animationDelay: "800ms" }}
+                    className={
+                        "w-full h-min opacity-0 flex flex-wrap gap-y-4 gap-x-10 justify-center" +
+                        applyClassName(contentsRef.pricing.pricingIsVisible, "animate-appear-element")
+                    }
+                >
                     {pricingItems.map((item) => (
                         <li
                             key={item.title}
@@ -204,17 +250,39 @@ export const PageContent = () => {
                         subtitle="TIPS AND WISDOM FOR YOUR PET"
                         title="All You Need to Care for Your Pet"
                         description="Find valuable resources on pet care, grooming tips, nutrition, and more. Stay informed and give your furry friend the best life possible!"
-                        additionalInfo={<CtaLink title="Read More" />}
+                        additionalInfo={
+                            <CtaLink
+                                title="Read More"
+                                animationDelay={800}
+                            />
+                        }
                         alignLeft
                         alternative
                     />
                     <img
+                        ref={contentsRef.resources.img.resourcesImgRef}
                         src={resourcesImg}
                         alt="Resources"
-                        className="size-52 object-contain md:size-82"
+                        className={
+                            "size-52 opacity-0 object-contain md:size-82" +
+                            applyClassName(
+                                contentsRef.resources.img.resourcesImgIsVisible,
+                                "animate-slide-in-fwd-center-element"
+                            )
+                        }
                         loading="lazy"
                     />
-                    <section className="w-full h-min flex flex-col gap-y-4">
+                    <section
+                        ref={contentsRef.resources.text.resourcesTextRef}
+                        style={{ animationDelay: "850ms" }}
+                        className={
+                            "w-full h-min opacity-0 flex flex-col gap-y-4" +
+                            applyClassName(
+                                contentsRef.resources.text.resourcesTextIsVisible,
+                                "animate-slide-in-fwd-center-element"
+                            )
+                        }
+                    >
                         {resourcesItems.map((item) => (
                             <section
                                 key={item.title}
@@ -243,7 +311,17 @@ export const PageContent = () => {
                         title="Where pets find the love they deserve"
                         description="Petzzo is more than just a pet shop. it's a place of love and care. See how our customers and their furry friends experience something truly unique with our products and services made with love."
                         additionalInfo={
-                            <section className="w-full max-w-sm h-min">
+                            <section
+                                ref={contentsRef.testimonial.text.testimonialTextRef}
+                                style={{ animationDelay: "800ms" }}
+                                className={
+                                    "w-full max-w-sm h-min opacity-0" +
+                                    applyClassName(
+                                        contentsRef.testimonial.text.testimonialTextIsVisible,
+                                        "animate-slide-in-fwd-center-element"
+                                    )
+                                }
+                            >
                                 <section className="w-full max-w-sm h-min flex gap-x-4 items-center">
                                     <Icon
                                         icon="Quote"
@@ -272,9 +350,17 @@ export const PageContent = () => {
                     {renderElement(
                         !screenStatus.isLgScreen,
                         <img
+                            ref={contentsRef.testimonial.img.testimonialImgRef}
                             src={testimonialImg}
                             alt="Testimonial"
-                            className="size-52 object-contain md:size-82"
+                            style={{ animationDelay: "875ms" }}
+                            className={
+                                "size-52 opacity-0 object-contain md:size-82" +
+                                applyClassName(
+                                    contentsRef.testimonial.img.testimonialImgRef,
+                                    "animate-slide-in-fwd-center-element"
+                                )
+                            }
                             loading="lazy"
                         />
                     )}
@@ -295,11 +381,19 @@ export const PageContent = () => {
                             <CtaLink
                                 title="Need More Help?"
                                 alternative
+                                animationDelay={800}
                             />
                         }
                         alignLeftOnLargeScreen="md"
                     />
-                    <section className="w-full max-w-2xl h-min flex flex-col gap-y-4">
+                    <section
+                        ref={contentsRef.faq.faqRef}
+                        style={{ animationDelay: "875ms" }}
+                        className={
+                            "w-full max-w-2xl h-min opacity-0 flex flex-col gap-y-4" +
+                            applyClassName(contentsRef.faq.faqIsVisible, "animate-slide-in-fwd-center-element")
+                        }
+                    >
                         {faqItems.map((item) => (
                             <FaqCard
                                 key={item.question}
@@ -319,7 +413,14 @@ export const PageContent = () => {
                     description="We're here to help! Contact us to ask questions, book services, or learn more about our products."
                 />
                 <NewsletterForm />
-                <ul className="w-full h-min flex flex-wrap gap-y-4 gap-x-8 justify-center">
+                <ul
+                    ref={contentsRef.contact.contactRef}
+                    style={{ animationDelay: "875ms" }}
+                    className={
+                        "w-full h-min opacity-0 flex flex-wrap gap-y-4 gap-x-8 justify-center" +
+                        applyClassName(contentsRef.faq.faqIsVisible, "animate-slide-in-fwd-center-element")
+                    }
+                >
                     <li className="w-max h-min flex gap-x-2 items-center">
                         <div className="w-max h-min p-2 rounded-full bg-amber-400">
                             <Icon

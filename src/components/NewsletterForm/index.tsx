@@ -3,13 +3,21 @@ import { applyClassName, renderElement, STATUS_MESSAGE } from "~utils";
 import { Icon } from "../Icon";
 
 export const NewsletterForm = () => {
-    const { submitData, register, errors, isSubmitSuccessful, statusMessageIsRendered } = useNewsletterForm();
+    const { ref, isVisible, submitData, register, errors, isSubmitSuccessful, statusMessageIsRendered } =
+        useNewsletterForm();
 
     return (
         <form
+            ref={ref}
             onSubmit={submitData}
             noValidate
-            className="w-full max-w-2xl h-min flex flex-col gap-y-2"
+            style={{
+                animationDelay: "800ms"
+            }}
+            className={
+                "w-full max-w-2xl opacity-0 h-min flex flex-col gap-y-2" +
+                applyClassName(isVisible, "animate-slide-in-fwd-center-element")
+            }
         >
             <label className="w-full h-min px-5 text-gray-950 font-bold text-sm font-quicksand">
                 Subscribe to the Newsletter!

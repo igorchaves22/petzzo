@@ -7,6 +7,8 @@
     --animate-bounce-x-service: bounceX 3s infinite;
     --animate-bounce-in-up-scroll-to-top-button: bounceInUp 0.75s ease-in;
     --animate-bounce-out-down-scroll-to-top-button: bounceOutDown 1s ease-in;
+    --animate-appear-element: appear 1s linear forwards;
+    --animate-slide-in-fwd-center-element: slideInFwdCenter 1s linear forwards;
 
     @keyframes scrollLeft {
         0% {
@@ -72,6 +74,26 @@
         to {
             opacity: 0;
             transform: translate3d(0, 125rem, 0) scaleY(3);
+        }
+    }
+    @keyframes appear {
+        from {
+            opacity: 0;
+            clip-path: inset(100% 100% 0 0);
+        }
+        to {
+            opacity: 1;
+            clip-path: inset(0 0 0 0);
+        }
+    }
+    @keyframes slideInFwdCenter {
+        0% {
+            transform: scale(0) translate(-100%, 100%);
+            opacity: 0;
+        }
+        100% {
+            transform: scale(1) translate(0, 0);
+            opacity: 1;
         }
     }
 }

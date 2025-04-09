@@ -1,7 +1,9 @@
 export { useScreen } from "./useScreen";
 export { useToggle } from "./useToggle";
 export { useCollapseControl } from "./useCollapseControl";
+export { useIntersectionObserver } from "./useIntersectionObserver";
 export { useHeader } from "./useHeader";
+export { usePageContent } from "./usePageContent";
 export { useFaqCard } from "./useFaqCard";
 export { useNewsletterForm } from "./useNewsletterForm";
 export { useScrollToTopButton } from "./useScrollToTopButton";

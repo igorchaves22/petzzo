@@ -2,6 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { newsletterFormSchema, NewsletterFormSchemaType, STATUS_MESSAGE } from "~utils";
+import { useIntersectionObserver } from "./useIntersectionObserver";
 import { useToggle } from "./useToggle";
 
 const TIMEOUT_RESET = 5000;
@@ -20,6 +21,7 @@ export const useNewsletterForm = () => {
         undefined,
         { value: TIMEOUT_RESET }
     );
+    const { ref, isVisible } = useIntersectionObserver<HTMLFormElement>();
 
     const submitData = handleSubmit(() => {
         console.log(STATUS_MESSAGE.newsletter.success);
@@ -39,11 +41,5 @@ export const useNewsletterForm = () => {
         }
     }, [errors.email, isSubmitSuccessful, reset, statusMessageIsRendered.immediate, statusMessageUpdateRender]);
 
-    return {
-        submitData,
-        register,
-        errors,
-        isSubmitSuccessful,
-        statusMessageIsRendered
-    };
+    return { ref, isVisible, submitData, register, errors, isSubmitSuccessful, statusMessageIsRendered };
 };
