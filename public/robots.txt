@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://igor-deploy-petzzo.vercel.app/sitemap.xml
